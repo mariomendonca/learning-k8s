@@ -1,8 +1,9 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: postgres
 spec:
+  serviceName: "postgres" # precisa de um headless service com esse nome
   replicas: 1
   selector:
     matchLabels:
@@ -34,8 +35,14 @@ spec:
                   name: app-secret
                   key: db-password
           volumeMounts:
-            - mountPath: /var/lib/postgresql/data
-              name: postgres-storage
-      volumes:
-        - name: postgres-storage
-          emptyDir: {}  # Para testes locais. Use PVC em produção.
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data
+  volumeClaimTemplates:
+    - metadata:
+        name: postgres-data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 1Gi
+        storageClassName: standard  # ou defina sua StorageClass, se tiver uma

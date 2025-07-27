@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.List;
 
 @RestController
@@ -82,5 +84,10 @@ public class TodoController {
     @GetMapping("/health")
     public ResponseEntity<String> healthCheck() {
         return ResponseEntity.ok("Todo API is running!");
+    }
+
+    @GetMapping("/whoami")
+    public String whoami() throws UnknownHostException {
+        return InetAddress.getLocalHost().getHostName();
     }
 }
