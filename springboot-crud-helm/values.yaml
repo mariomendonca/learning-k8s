@@ -1,0 +1,17 @@
+replicaCount: 1
+
+image:
+  repository: mariomendonca/springboot-crud
+  tag: latest
+
+postgres:
+  image: postgres:15
+  storage: 1Gi
+
+env:
+  db:
+    name: simple_crud
+    user: postgres
+    password: password
+    host: postgres
+    port: "5432"

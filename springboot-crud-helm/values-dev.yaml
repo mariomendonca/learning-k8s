@@ -1,0 +1,6 @@
+replicaCount: 1
+image:
+  tag: dev
+env:
+  db:
+    name: simple_crud_dev

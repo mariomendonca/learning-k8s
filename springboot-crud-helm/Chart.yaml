@@ -1,0 +1,5 @@
+apiVersion: v2
+name: springboot-crud
+description: Helm chart para estudar ambientes dev e prd
+version: 0.1.0
+appVersion: "1.0.0"

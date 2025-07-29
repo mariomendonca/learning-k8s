@@ -1,0 +1,6 @@
+replicaCount: 3
+image:
+  tag: latest
+env:
+  db:
+    name: simple_crud
